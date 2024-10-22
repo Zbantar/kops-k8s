@@ -88,7 +88,15 @@ ssh-keygen -t rsa -b 4096
 kops create cluster --zones us-east-2a --networking weave --master-size t2.medium --master-count 1 --node-size t2.medium --node-count=2 ${NAME}
 
 
-kops create cluster --zones us-east-1a --networking weave --master-size t2.medium --master-count 1 --node-size t2.medium --node-count=2 ${NAME}
+Suggestions:
+ * list clusters with: kops get cluster
+ * edit this cluster with: kops edit cluster class35.k8s.local
+ * edit your node instance group: kops edit ig --name=class35.k8s.local nodes-us-east-2a
+ * edit your master instance group: kops edit ig --name=class35.k8s.local master-us-east-2a
+
+Finally configure your cluster with: kops update cluster --name class35.k8s.local --yes --admin
+
+
 # copy the sshkey into your cluster to be able to access your kubernetes node from the kops server
 kops create secret --name ${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
 ```
