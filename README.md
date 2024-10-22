@@ -84,6 +84,10 @@ ssh-keygen -t rsa -b 4096
 
 # 8) Create kubernetes cluster definitions on S3 bucket
 ```sh
+# While running this command below, make sure you modify the region while adding the a after the number where you want to create the cluster
+kops create cluster --zones us-east-2a --networking weave --master-size t2.medium --master-count 1 --node-size t2.medium --node-count=2 ${NAME}
+
+
 kops create cluster --zones us-east-1a --networking weave --master-size t2.medium --master-count 1 --node-size t2.medium --node-count=2 ${NAME}
 # copy the sshkey into your cluster to be able to access your kubernetes node from the kops server
 kops create secret --name ${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
