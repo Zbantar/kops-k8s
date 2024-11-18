@@ -34,11 +34,13 @@
  ```
  ## or 2b) install AWSCLI using the script below
  ```sh
-sudo apt install unzip tree nano vim  -y
+sudo apt update
+sudo apt install curl unzip
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
- ```
+aws --version
+aws configure
 ## 3) Install kops software on an ubuntu instance by running the commands below:
  	sudo apt install wget -y
  	sudo wget https://github.com/kubernetes/kops/releases/download/v1.22.0/kops-linux-amd64
