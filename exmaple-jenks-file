@@ -1,0 +1,23 @@
+// This is a Jenkinsfile example
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Pipeline finished. Cleaning up...'
+        
+        }
+        success {
+          
+        }
+        failure {
+          
+        }
+    }
+}
