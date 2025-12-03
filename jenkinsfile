@@ -1,0 +1,42 @@
+   stage('Update Yaml manifest in other Repo'){
+steps{
+   script{
+       withCredentials(gitUsernamePassword(credentialsId: 'git-cred', gitToolName:'Default')]}
+           sh '''
+              # clone the repo
+                git clone https://www.github.com/jaiswaladi246/Multi-Tier-BankApp-CD.git
+                cd Multi-Tier-BankApp-CD
+              # List files to confirm the presence of bankapp-ds.yml
+               ls -l bankapp
+              # Get the absolute path of the current directory repo_dir=$(pwd)
+              # Use the absolute path for sed
+              sed -i 's|image: adijaiswal/bankapp:.*|image:
+              adijaiswal/bankapp:'${DOCKER_TAG}'|'
+              ${repo_dir}/bankapp/bankapp-ds.yml
+              '''
+              // confirm the change
+              sh '''
+                 echo "Updated YAML file contents:"
+                 cat Multi-Tier-BankApp-CD/bankapp/bankapp-ds.yml
+                 '''
+               // configure Git for committing changes and pushing
+               sh '''
+                 cd Multi-Tier-BankApp-CD  # Ensure you are inside the cloned repo
+                 git config user.email "jenkins@yourdomain.com"
+                 git config user.name "Jenkins CI" 
+                // Commit and push the updated YAML file back to the other repository
+                sh '''
+                     cd Multi-Tier-BankApp-CD
+                     ls
+                     git add bankapp/bankapp-ds.yml
+                     git commit -m "Update image tag to ${DOCKER_TAG}"
+                     git push origin main
+                     '''
+              }            
+           }
+        }
+     }
+ }
+
+}
+}
