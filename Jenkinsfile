@@ -62,7 +62,7 @@ pipeline {
        stage('docker build and tag') {
             steps {
                script{
-                  withDockerRegistry(credentialsId: 'docker', url: 'https://index.docker.io/v1/') {
+                  withDockerRegistry(credentialsId: 'docker-cred', url: 'https://index.docker.io/v1/') {
                   sh "docker build -t zbantar/myapp:${params.IMAGE_TAG} ."
                  }
               }
