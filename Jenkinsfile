@@ -79,7 +79,7 @@ pipeline {
          stage('docker push') {
             steps {
                script{
-                  withDockerRegistry(credentialsId: 'docker', url: 'https://index.docker.io/v1/') {
+                  withDockerRegistry(credentialsId: 'docker-cred', url: 'https://index.docker.io/v1/') {
                        echo 'pushing the image to the docker registry' 
                           sh "docker push  zbantar/myapp:${params.IMAGE_TAG}"
                  } 
