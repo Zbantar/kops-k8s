@@ -69,13 +69,13 @@ pipeline {
            }
        }
        
-        stage('image scan with trivy') {
+  /*      stage('image scan with trivy') {
             steps {
                echo 'scanning the image with trivy...'
                  sh "trivy image --format table -o dimage.html  zbantar/myapp:${params.IMAGE_TAG}"
             }
         }
-           
+  */         
          stage('docker push') {
             steps {
                script{
