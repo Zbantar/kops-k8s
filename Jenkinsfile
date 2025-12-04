@@ -112,6 +112,7 @@ pipeline {
                     cd Multi-Tier-BankApp-CD
 
                     repo_dir=\$(pwd)
+                '''
                  sh '''
                     echo "Before updating YAML:"
                     cat Multi-Tier-BankApp-CD/bankapp/bankapp-ds.yml
