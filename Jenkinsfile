@@ -112,11 +112,16 @@ pipeline {
                     cd Multi-Tier-BankApp-CD
 
                     repo_dir=\$(pwd)
+                 sh '''
+                    echo "Before updating YAML:"
+                    cat Multi-Tier-BankApp-CD/bankapp/bankapp-ds.yml
+                    '''
 
                     # Update the image tag in bankapp-ds.yml
                     sed -i 's|image: .*|image: zbantar/myapp:${IMAGE_TAG}|g' bankapp/bankapp-ds.yml
                 '''
 
+                
                 sh '''
                     echo "Updated YAML file contents:"
                     cat Multi-Tier-BankApp-CD/bankapp/bankapp-ds.yml
