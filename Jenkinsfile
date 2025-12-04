@@ -29,14 +29,13 @@ pipeline {
                sh "mvn test -DskipTests=true"
             }
         }
-      /*  stage('trivy scan') {
+        stage('trivy scan') {
             steps {
               echo 'scanning the file system with trivy'
               sh "trivy fs --output table -o fs.html ."
                
             }
         }
-       */
         stage('codeQuality with sonarqube') {
             steps {
                withSonarQubeEnv('sonar-server') { 
@@ -60,6 +59,7 @@ pipeline {
               }
             }
         }
+/*    
        stage('docker build and tag') {
             steps {
                script{
@@ -70,13 +70,13 @@ pipeline {
            }
        }
        
-      /*  stage('image scan with trivy') {
+        stage('image scan with trivy') {
             steps {
                echo 'scanning the image with trivy...'
                  sh "trivy image --format table -o dimage.html  zbantar/bankapp:${params.IMAGE_TAG}"
             }
         }
-       */    
+           
          stage('docker push') {
             steps {
                script{
@@ -138,5 +138,6 @@ pipeline {
         }
      }
    }
+*/
  }
 }
