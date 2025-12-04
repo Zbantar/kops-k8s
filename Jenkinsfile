@@ -121,7 +121,11 @@ pipeline {
                     echo "Updated YAML file contents:"
                     cat Multi-Tier-BankApp-CD/bankapp/bankapp-ds.yml
                 '''
-
+                sh '''
+                   echo "Showing file before commit:"
+                   cat Multi-Tier-BankApp-CD/bankapp/bankapp-ds.yml
+                   '''
+                    
                 sh '''
                     echo 'Configuring Git user...'
                     cd Multi-Tier-BankApp-CD
