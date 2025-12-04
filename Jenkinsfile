@@ -58,8 +58,7 @@ pipeline {
                   sh "mvn deploy -DskipTests=true"
               }
             }
-        }
-/*    
+        }   
        stage('docker build and tag') {
             steps {
                script{
@@ -138,6 +137,5 @@ pipeline {
         }
      }
    }
-*/
  }
 }
