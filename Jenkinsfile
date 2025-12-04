@@ -54,7 +54,7 @@ pipeline {
     */    
       stage('nexus') {
             steps {
-               withMaven(globalMavenSettingsConfig: 'global-maven-settings', maven: 'maven3', traceability: true) {
+                withMaven(globalMavenSettingsConfig: 'global-settings', maven: 'maven3', traceability: true) {
                   sh "mvn deploy -DskipTests=true"
               }
             }
